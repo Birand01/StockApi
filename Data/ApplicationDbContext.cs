@@ -16,7 +16,13 @@ namespace api.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+             base.OnModelCreating(modelBuilder);
             modelBuilder.HasPostgresExtension("uuid-ossp");
+             modelBuilder.Entity<Comment>()
+            .HasOne(c => c.Stock)
+            .WithMany(s => s.Comments)
+            .HasForeignKey(c => c.StockId)
+            .OnDelete(DeleteBehavior.SetNull); 
         }
 
         public DbSet<Stock> Stocks{get;set;}
