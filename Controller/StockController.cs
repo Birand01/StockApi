@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controller
 {
+
+     [Route("api/[controller]")]
+    [ApiController] 
     public class StockController:ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -15,7 +18,7 @@ namespace api.Controller
             _context=context;
         }
         [HttpGet]
-        public IActionResult GetAllStock()
+        public IActionResult GetAll()
         {
             var stocks=_context.Stocks.ToList();
             return Ok(stocks);

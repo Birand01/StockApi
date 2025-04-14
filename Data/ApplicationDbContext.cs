@@ -14,6 +14,10 @@ namespace api.Data
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasPostgresExtension("uuid-ossp");
+        }
 
         public DbSet<Stock> Stocks{get;set;}
         public DbSet<Comment> Comments{ get; set; }
