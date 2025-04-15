@@ -16,7 +16,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddScoped<IStockRepository,StockRepository>();
+builder.Services.AddScoped<IStockRepository,StockRepository>(); // for dependency injection
+builder.Services.AddScoped<ICommentRepository,CommentRepository>(); // for dependency injection
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
