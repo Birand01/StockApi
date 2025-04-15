@@ -167,3 +167,7 @@ C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Swashbuckle.AspNetCo
 C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Npgsql.dll
 C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\SPINOZA\Desktop\APIs\StockApi\api\bin\Debug\net9.0\Newtonsoft.Json.Bson.dll

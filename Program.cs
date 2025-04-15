@@ -10,7 +10,12 @@ builder.Services.AddControllers();
 // Add Swagger/OpenAPI services
 builder.Services.AddEndpointsApiExplorer(); // Adds OpenAPI/Swagger support
 builder.Services.AddSwaggerGen(); // Adds Swagger generator
-
+// Add services to the container.
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+    });
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
