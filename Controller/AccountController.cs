@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Account;
+using api.Dtos.Login;
 using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controller
 {
@@ -17,13 +19,41 @@ namespace api.Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public AccountController(UserManager<AppUser> userManager,ITokenService tokenService)
+        public AccountController(UserManager<AppUser> userManager,ITokenService tokenService,SignInManager<AppUser> signInManager)
         {
+            _signInManager=signInManager;
             _tokenService=tokenService;
             _userManager=userManager;
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var user=await _userManager.Users.FirstOrDefaultAsync(x=>x.UserName==loginDto.UserName);
+            if(user==null)
+            {
+                return Unauthorized("Invalid UserName!");
+            }  
+            var result=await _signInManager.CheckPasswordSignInAsync(user,loginDto.Password,false);
+            if(!result.Succeeded)
+            {
+                return Unauthorized("UserName or password is not found");
+            }
+            return Ok(
+                new NewUserDto
+                {
+                    UserName=user.UserName,
+                    Email=user.Email,
+                    Token=_tokenService.CreateToken(user),
+                }
+            );
+        }
 
 
 
